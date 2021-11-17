@@ -1,11 +1,13 @@
 package wordGuessingGame;
 
-// import java.util.ArrayList;
+
+import java.util.ArrayList;
 // import java.util.Arrays;
 // import java.util.Random;
 
 public class WordGuessingGame {
     String hiddenWord;
+    ArrayList<Character> guessedLetters = new ArrayList<Character>();
     Integer remainingAttempts = 10 ;
   
     public WordGuessingGame(WordChoser choser){
@@ -26,6 +28,22 @@ public class WordGuessingGame {
         }
         return guessThisWord.toString();
     }
+
+    public Boolean guessLetter(Character letter){
+        // System.out.println(letter);
+        for (Integer i = 0; i < hiddenWord.length()-1; i++){
+            // System.out.println(hiddenWord.charAt(i));
+          if (hiddenWord.charAt(i) == letter) { 
+              guessedLetters.add(letter);
+            return true ;
+           }
+        }
+        // System.out.println("false");
+        remainingAttempts-- ;
+        return false ;
+    }
+    
+
 }
 
 
