@@ -1,26 +1,21 @@
 package wordGuessingGame;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Random;
+// import java.util.ArrayList;
+// import java.util.Arrays;
+// import java.util.Random;
 
 public class WordGuessingGame {
     String hiddenWord;
     Integer remainingAttempts = 10 ;
-    static final ArrayList<String> DICTIONARY = new ArrayList<>(Arrays.asList("MAKERS", "CANDIES", "DEVELOPER", "LONDON"));
-
-    WordGuessingGame(){
-        hiddenWord = getRandomWordFromDictionary();
+  
+    public WordGuessingGame(WordChoser choser){
+        // WordChoser wordChoser = new WordChoser();
+        hiddenWord = choser.getRandomWordFromDictionary();
     }
 
     public Integer getRemainingAttempts(){
         return remainingAttempts ;
-    }
-
-    public String getRandomWordFromDictionary(){
-        Random rand = new Random();
-        return DICTIONARY.get(rand.nextInt(DICTIONARY.size()));
-    }
+    } 
 
     public String getWordToGuess(){
         Integer lengthOfWord = hiddenWord.length();
@@ -32,3 +27,5 @@ public class WordGuessingGame {
         return guessThisWord.toString();
     }
 }
+
+
