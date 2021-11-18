@@ -7,6 +7,10 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.*;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.lang.Character;
+
 
 public class WordGuessingGameTest {
 
@@ -68,6 +72,31 @@ public class WordGuessingGameTest {
         WordGuessingGame game = new WordGuessingGame(mockedChoser);
         assertEquals(game.guessLetter('X'), false);
         assertEquals(game.getWordToGuess(), "D________");
-    }}
+    }
+    @Test public void testisGameLost() {
+        WordChoser mockedChoser = mock(WordChoser.class);
+        when(mockedChoser.getRandomWordFromDictionary()).thenReturn("DEVELOPER");
+        WordGuessingGame game = new WordGuessingGame(mockedChoser);
+        for (Integer i=1 ; i < 11 ; i++) {
+        assertEquals(game.guessLetter('X'), false);
+        }
+        assertEquals(game.isGameLost(), true);
+    }
+    @Test public void testisGameWon() {
+        
+        WordChoser mockedChoser = mock(WordChoser.class);
+        when(mockedChoser.getRandomWordFromDictionary()).thenReturn("DEVELOPER");
+        WordGuessingGame game = new WordGuessingGame(mockedChoser); 
+        
+        ArrayList<Character> letters = new ArrayList<>(Arrays.asList('E','V','L','O','P','R'));
+        for (Character letter : letters) {
+            // System.out.println("testing letter" + letter);
+            assertEquals(game.guessLetter(letter), true);
+        }
+        assertEquals("Not lost yet", false, game.isGameLost());
+        assertEquals("Game is won", true, game.isGameWon());
+    }
+
+}
 
 

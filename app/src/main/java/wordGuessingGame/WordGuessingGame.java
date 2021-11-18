@@ -37,7 +37,7 @@ public class WordGuessingGame {
     }
 
     public Boolean guessLetter(Character letter){
-        System.out.println(letter);
+        // System.out.println(letter);
         for (Integer i = 0; i < hiddenWord.length(); i++){
             // System.out.println(hiddenWord.charAt(i));
           if (hiddenWord.charAt(i) == letter) { 
@@ -50,6 +50,35 @@ public class WordGuessingGame {
         return false ;
     }
     
+    public Boolean isGameLost(){
+          if (getRemainingAttempts()==0) { 
+            System.out.println("Sorry, you lost.");
+            return true ;
+           }
+           else {
+            return false ;
+           }
+        
+    }
+
+    public Boolean isGameWon(){
+        // System.out.println("In isGameWon ");
+        // System.out.println(getWordToGuess());
+        // System.out.println("Hiddenword....");
+        // System.out.println(hiddenWord);
+        // System.out.println(getWordToGuess().equals(hiddenWord));
+        // System.out.println(getWordToGuess().toString().length());
+        // System.out.println(" and....");
+        // System.out.println(hiddenWord.length());
+        if (getWordToGuess().equals(hiddenWord)) { 
+            System.out.println("Congratulations, you won!");
+          return true ;
+         }
+         else {
+          return false ;
+         }
+      
+  }
 
 }
 
