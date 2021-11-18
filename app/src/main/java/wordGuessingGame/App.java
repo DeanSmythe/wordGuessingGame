@@ -25,6 +25,10 @@ public class App {
             else
             { System.out.println("Incorrect!"); }
             System.out.printf("You have %d guess(es) remaining. \n", game.getRemainingAttempts());
+
+            if (game.isGameLost() || game.isGameWon() ) {
+                break;
+            }
         }
         scanner.close(); 
     }
