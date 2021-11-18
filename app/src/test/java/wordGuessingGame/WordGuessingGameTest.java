@@ -15,6 +15,7 @@ public class WordGuessingGameTest {
     //     assertEquals("M_____", game.getWordToGuess());
     // }
 
+
     @Test public void testGetsRemainingAttempts(){
         WordChoser choser = new WordChoser();
         WordGuessingGame game = new WordGuessingGame(choser);
@@ -40,21 +41,33 @@ public class WordGuessingGameTest {
         assertFalse("Letter not found.", game.guessLetter('X') == true);
         assertEquals(Integer.valueOf(9), game.getRemainingAttempts());
     }
-    @Test public void testGuessLetterSame(){
+    @Test public void testGuessLetterCorrectNoDecrement(){
         WordChoser mockedChoser = mock(WordChoser.class);
         when(mockedChoser.getRandomWordFromDictionary()).thenReturn("DEVELOPER");
         WordGuessingGame game = new WordGuessingGame(mockedChoser);
         game.guessLetter('D');
         assertEquals(Integer.valueOf(10), game.getRemainingAttempts());
     }
-    @Test public void testGuessLetterDecrement(){
+    @Test public void testGuessLetterIncorrectAndDecrement(){
         WordChoser mockedChoser = mock(WordChoser.class);
         when(mockedChoser.getRandomWordFromDictionary()).thenReturn("DEVELOPER");
         WordGuessingGame game = new WordGuessingGame(mockedChoser);
         game.guessLetter('X');
         assertEquals(Integer.valueOf(9), game.getRemainingAttempts());
     }
-
-}
+    @Test public void testGetsCorrectGuess() {
+        WordChoser mockedChoser = mock(WordChoser.class);
+        when(mockedChoser.getRandomWordFromDictionary()).thenReturn("DEVELOPER");
+        WordGuessingGame game = new WordGuessingGame(mockedChoser);
+        assertEquals(game.guessLetter('E'), true);
+        assertEquals(game.getWordToGuess(), "DE_E___E_");
+    }
+    @Test public void testGetsIncorrectGuess() {
+        WordChoser mockedChoser = mock(WordChoser.class);
+        when(mockedChoser.getRandomWordFromDictionary()).thenReturn("DEVELOPER");
+        WordGuessingGame game = new WordGuessingGame(mockedChoser);
+        assertEquals(game.guessLetter('X'), false);
+        assertEquals(game.getWordToGuess(), "D________");
+    }}
 
 
