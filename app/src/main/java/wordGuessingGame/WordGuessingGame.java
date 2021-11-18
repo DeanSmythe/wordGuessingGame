@@ -12,7 +12,6 @@ public class WordGuessingGame {
     Integer remainingAttempts = 10 ;
   
     public WordGuessingGame(WordChoser choser){
-        // WordChoser wordChoser = new WordChoser();
         hiddenWord = choser.getRandomWordFromDictionary();
     }
 
