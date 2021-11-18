@@ -25,12 +25,7 @@ public class WordGuessingGameTest {
         WordGuessingGame game = new WordGuessingGame(choser);
         assertEquals(Integer.valueOf(10), game.getRemainingAttempts());
     }
-    @Test public void testGetsRandomWordFromDictionary(){
-        WordChoser mockedChoser = mock(WordChoser.class);
-        when(mockedChoser.getRandomWordFromDictionary()).thenReturn("DEVELOPER");
-        WordGuessingGame game = new WordGuessingGame(mockedChoser);
-        assertEquals(game.getWordToGuess(), "D________");
-    }
+
     @Test public void testGuessLetterCorrect(){
         WordChoser mockedChoser = mock(WordChoser.class);
         when(mockedChoser.getRandomWordFromDictionary()).thenReturn("DEVELOPER");
@@ -38,6 +33,7 @@ public class WordGuessingGameTest {
         assertTrue("Letter found.", game.guessLetter('D') == true);
         assertEquals(Integer.valueOf(10), game.getRemainingAttempts());
     }
+
     @Test public void testGuessLetterIncorrect(){
         WordChoser mockedChoser = mock(WordChoser.class);
         when(mockedChoser.getRandomWordFromDictionary()).thenReturn("DEVELOPER");
@@ -45,6 +41,7 @@ public class WordGuessingGameTest {
         assertFalse("Letter not found.", game.guessLetter('X') == true);
         assertEquals(Integer.valueOf(9), game.getRemainingAttempts());
     }
+
     @Test public void testGuessLetterCorrectNoDecrement(){
         WordChoser mockedChoser = mock(WordChoser.class);
         when(mockedChoser.getRandomWordFromDictionary()).thenReturn("DEVELOPER");
@@ -52,6 +49,7 @@ public class WordGuessingGameTest {
         game.guessLetter('D');
         assertEquals(Integer.valueOf(10), game.getRemainingAttempts());
     }
+
     @Test public void testGuessLetterIncorrectAndDecrement(){
         WordChoser mockedChoser = mock(WordChoser.class);
         when(mockedChoser.getRandomWordFromDictionary()).thenReturn("DEVELOPER");
@@ -59,20 +57,7 @@ public class WordGuessingGameTest {
         game.guessLetter('X');
         assertEquals(Integer.valueOf(9), game.getRemainingAttempts());
     }
-    @Test public void testGetsCorrectGuess() {
-        WordChoser mockedChoser = mock(WordChoser.class);
-        when(mockedChoser.getRandomWordFromDictionary()).thenReturn("DEVELOPER");
-        WordGuessingGame game = new WordGuessingGame(mockedChoser);
-        assertEquals(game.guessLetter('E'), true);
-        assertEquals(game.getWordToGuess(), "DE_E___E_");
-    }
-    @Test public void testGetsIncorrectGuess() {
-        WordChoser mockedChoser = mock(WordChoser.class);
-        when(mockedChoser.getRandomWordFromDictionary()).thenReturn("DEVELOPER");
-        WordGuessingGame game = new WordGuessingGame(mockedChoser);
-        assertEquals(game.guessLetter('X'), false);
-        assertEquals(game.getWordToGuess(), "D________");
-    }
+  
     @Test public void testisGameLost() {
         WordChoser mockedChoser = mock(WordChoser.class);
         when(mockedChoser.getRandomWordFromDictionary()).thenReturn("DEVELOPER");
@@ -82,6 +67,7 @@ public class WordGuessingGameTest {
         }
         assertEquals(game.isGameLost(), true);
     }
+    
     @Test public void testisGameWon() {
         
         WordChoser mockedChoser = mock(WordChoser.class);

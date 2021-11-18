@@ -14,21 +14,24 @@ public class App {
         WordChoser choser = new WordChoser();
         WordGuessingGame game = new WordGuessingGame(choser) ;
         Scanner scanner = new Scanner(System.in);
+        System.out.println("Your word is: ");
+        System.out.println(game.getWordToGuess());
 
         while (game.getRemainingAttempts() >0){    
-
-            System.out.println(game.getWordToGuess());
+            System.out.println("Guess a letter: ");
             Character guess = scanner.nextLine().charAt(0);
             
             if (game.guessLetter(guess)) 
-            { System.out.println("Correct!"); }
+            { System.out.println("Correct! :) "); }
             else
-            { System.out.println("Incorrect!"); }
-            System.out.printf("You have %d guess(es) remaining. \n", game.getRemainingAttempts());
-
+            { System.out.println("Incorrect! :( "); }
+    
             if (game.isGameLost() || game.isGameWon() ) {
                 break;
             }
+            System.out.println(game.getWordToGuess());
+            System.out.printf("You have %d guess(es) remaining. \n", game.getRemainingAttempts());
+
         }
         scanner.close(); 
     }

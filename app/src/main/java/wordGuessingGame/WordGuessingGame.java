@@ -20,21 +20,10 @@ public class WordGuessingGame {
     } 
 
     public String getWordToGuess(){
-        Integer lengthOfWord = hiddenWord.length();
-        StringBuilder guessThisWord = new StringBuilder(lengthOfWord);
-        guessThisWord.append(hiddenWord.charAt(0));
-        for (int i = 1; i < hiddenWord.length(); i++){
-            Character currentLetter = (hiddenWord.charAt(i));
-            // System.out.println(currentLetter);
-            if (guessedLetters.indexOf(currentLetter)!= -1) {
-            guessThisWord.append(currentLetter);
-            }
-            else {
-                guessThisWord.append("_");
-            }
-        }
-        return guessThisWord.toString();
-    }
+        Masker masker = new Masker();
+        return masker.getWordToGuess(hiddenWord, guessedLetters);
+    } 
+
 
     public Boolean guessLetter(Character letter){
         // System.out.println(letter);
@@ -62,15 +51,8 @@ public class WordGuessingGame {
     }
 
     public Boolean isGameWon(){
-        // System.out.println("In isGameWon ");
-        // System.out.println(getWordToGuess());
-        // System.out.println("Hiddenword....");
-        // System.out.println(hiddenWord);
-        // System.out.println(getWordToGuess().equals(hiddenWord));
-        // System.out.println(getWordToGuess().toString().length());
-        // System.out.println(" and....");
-        // System.out.println(hiddenWord.length());
-        if (getWordToGuess().equals(hiddenWord)) { 
+        Masker masker = new Masker();
+        if (masker.getWordToGuess(hiddenWord, guessedLetters).equals(hiddenWord)) { 
             System.out.println("Congratulations, you won!");
           return true ;
          }
